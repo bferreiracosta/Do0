@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Do0 Education</title>
+		<link rel="stylesheet" type="text/css" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"> 
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" media="screen"> 
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+			<link rel='stylesheet' id='camera-css'  href='css/camera.css' type='text/css' media='all'> 
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+<body>
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="/home">
+					<img src="images/logo.png" alt="Techro HTML5 template"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right mainNav">
+					<li class="active"><a href="/home">Home</a></li>
+					<li><a href="/courses">Curso</a></li>
+					<li><a href="/login">Login</a></li>
+					<li><a href="/signup">Signup</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+    </div>
+<div class="container">
+
+<div class="col-sm-6 col-sm-offset-3">
+
+	<h1><span class="fa fa-sign-in"></span> Signup</h1>
+
+	<!-- show any messages that come back with authentication -->
+	<% if (message.length > 0) { %>
+		<div class="alert alert-danger"><%= message %></div>
+	<% } %>
+
+	<!-- LOGIN FORM -->
+	<form action="/signup" method="post">
+		<div class="form-group">
+			<label>Username</label>
+			<input type="text" class="form-control" name="username">
+		</div>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" class="form-control" name="password">
+		</div>
+
+		<button type="submit" class="btn btn-warning btn-lg">Signup</button>
+	</form>
+
+	<hr>
+
+	<p>Already have an account? <a href="/login">Login</a></p>
+	<p>Or go <a href="/">home</a>.</p>
+
+</div>
+
+</div>
+</body>
+</html>

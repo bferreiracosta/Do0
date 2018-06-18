@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Do0 Education</title>
+		<link rel="stylesheet" type="text/css" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+		<link rel="stylesheet" type="text/css" href="./../css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./../css/font-awesome.min.css"> 
+		<link rel="stylesheet" type="text/css" href="./../css/bootstrap-theme.css" media="screen"> 
+		<link rel="stylesheet" type="text/css" href="./../css/style.css">
+			<link rel='stylesheet' id='camera-css'  href='./../css/camera.css' type='text/css' media='all'> 
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+
+<body>
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="/home">
+					<img  src="./../images/logo.png" alt="Techro HTML5 template"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right mainNav">
+					<li class="active"><a href="/home">Home</a></li>
+					<li><a href="/courses">Curso</a></li>
+					<li><a href="/login">Login</a></li>
+					<li><a href="/signup">Signup</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+    </div>
+    <section>
+            <div class="page-header text-center">
+                    <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+                    <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+                    <a href="/admin" class="btn btn-default btn-sm">Admin</a>
+                    <a href="/edicao" class="btn btn-default btn-sm">Edicao Curso</a>
+                </div>
+        <div class="container">
+            <div class="row text-center">
+                <H1>Administrativo do curso</H1>
+                <hr>
+            </div>
+            <div class="container">
+                <label style="font-size: 22px">Cursos</label>
+                <input list="cursos" name="cursos" style="width: 100%">
+                <datalist style="font-size: 24px" id="cursos">
+                  <option value="Portugues">
+                  <option value="Ingles">
+                  <option value="Portugues e Ingles">
+                </datalist>
+            </div>
+            </div></br>
+            <div class="container">
+                <form name="form" onsubmit="return false">
+                    <label style="font-size: 22px">Adicionar Aulas</label></br>
+                               
+                    Aula: <input type="text" id="idlesson" name="do0_lesson_name" style="width: 100%" value="<%= lessonName %>"></br></br>
+                    Pergunta1:<input type="text" id="idquestion1" name="do0_questions_name" style="width: 100%" value="<%= curso[0].questionName %>"></br></br>
+                    Respostas1: </br></br>
+                        <input type="text" id="Respostas1" style="width: 50%" value="<%= curso[0].alternativedesc %>"><select  id="select1">
+                            <option name="Correta">s</option>
+                            <option name="Correta">n</option>
+                            </select>
+                        <input type="text" id="Respostas2" style="width: 50%" value="<%= curso[1].alternativedesc %>"><select  id="select2">
+                            <option name="Correta">s</option>
+                            <option name="Correta">n</option>
+                            </select>
+                        <input type="text" id="Respostas3" style="width: 50%"value="<%= curso[2].alternativedesc %>"><select  id="select3">
+                            <option name="Correta">s</option>
+                            <option name="Correta">n</option>
+                            </select>
+                        <input type="text" id="Respostas4" style="width: 50%" value="<%= curso[3].alternativedesc %>"><select  id="select4">
+                            <option name="Correta">s</option>
+                            <option name="Correta">n</option>
+                            </select></br></br>
+                    Pergunta2:<input type="text" id="idquestion2" name="do0_questions_name" style="width: 100%" value="<%= curso[5].questionName %>"></br></br>
+                    Respostas2: </br></br>
+                        <input type="text" id="Respostas5" style="width: 50%" value="<%= curso[4].alternativedesc %>"><select  id="select5">
+                            <option name="Correta">s</option>
+                            <option name="Correta">n</option>
+                            </select>
+                        <input type="text" id="Respostas6" style="width: 50%" value="<%= curso[5].alternativedesc %>"><select  id="select6">
+                            <option name="Correta">s</option>
+                            <option name="Correta">n</option>
+                            </select>
+                        <input type="text" id="Respostas7" style="width: 50%" value="<%= curso[6].alternativedesc %>" ><select  id="select7">
+                            <option name="Correta">s</option>
+                            <option name="Correta">n</option>
+                            </select>
+                        <input type="text" id="Respostas8" style="width: 50%" value="<%= curso[7].alternativedesc %>"><select  id="select8">
+                            <option name="Correta">s</option>
+                            <option name="Correta">n</option>
+                            </select></br></br>
+                    <input type="submit" name="Gravar" id="gravar" onclick="doAddLesson()"/></br></br>
+                </form>
+                <form action="/file", method="POST", enctype="multipart/form-data">
+                Video: 
+                <form id ="uploadForm" enctype = "multipart/form-data" action="/file" method="post">
+                <input type="file" name="do0_lesson_name" />
+                <input type="submit" value="Upload Image" name="submit">
+                </form>
+                </form>
+                </div>
+                </div></br>
+                <input type="hidden" id="idlesson1"  value="<%= curso[0].idlesson %>">
+                <input type="hidden" id="idquestion3"  value="<%= curso[0].idquestion %>">
+                <input type="hidden" id="idquestion4"  value="<%= curso[5].idquestion %>">
+                <input type="hidden" id="idalternative1"  value="<%= curso[0].idalternative %>">
+                <input type="hidden" id="idalternative2"  value="<%= curso[1].idalternative %>">
+                <input type="hidden" id="idalternative3"  value="<%= curso[2].idalternative %>">
+                <input type="hidden" id="idalternative4"  value="<%= curso[3].idalternative %>">
+                <input type="hidden" id="idalternative5"  value="<%= curso[4].idalternative %>">
+                <input type="hidden" id="idalternative6"  value="<%= curso[5].idalternative %>">
+                <input type="hidden" id="idalternative7"  value="<%= curso[6].idalternative %>">
+                <input type="hidden" id="idalternative8"  value="<%= curso[7].idalternative %>">
+           
+
+            </div>
+
+
+
+        </div>
+
+
+    </section>
+    	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script type='text/javascript' src="./../js/modernizr-latest.js"></script> 
+	<script type='text/javascript' src='./../js/jquery.min.js'></script>
+    <script type='text/javascript' src='./../js/fancybox/jquery.fancybox.pack.js'></script>
+    
+    <script type='text/javascript' src='./../js/jquery.mobile.customized.min.js'></script>
+    <script type='text/javascript' src='./../js/jquery.easing.1.3.js'></script> 
+    <script type='text/javascript' src='./../js/camera.min.js'></script> 
+    <script type='text/javascript' src="./../js/bootstrap.min.js"></script> 
+	<script type='text/javascript' src="./../js/custom.js"></script>
+    
+    <!-- JS Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+            
+            function doAddLesson() {
+
+                //getid
+                var lessonId =  $('#idlesson1').val();
+                var idquestion1 =  $('#idquestion3').val();
+                var idquestion2 =  $('#idquestion4').val();
+                var idalternative1 =  $('#idalternative1').val();
+                var idalternative2 =  $('#idalternative2').val();
+                var idalternative3 =  $('#idalternative3').val();
+                var idalternative4 =  $('#idalternative4').val();
+                var idalternative5 =  $('#idalternative5').val();
+                var idalternative6 =  $('#idalternative6').val();
+                var idalternative7 =  $('#idalternative7').val();
+                var idalternative8 =  $('#idalternative8').val();
+                
+
+
+                //lesson
+               var lessonName = $('#idlesson').val();
+
+                // Perguntas
+                var pergunta1 = $('#idquestion1').val();
+                var pergunta2 = $('#idquestion2').val();
+                
+                //respostas
+                var resposta1_0= $('#Respostas1').val();
+                var flagresposta1 = document.getElementById("select1").value;
+                var resposta1_1= $('#Respostas2').val();
+                var flagresposta2 = document.getElementById("select2").value;
+                var resposta1_2= $('#Respostas3').val();
+                var flagresposta3 = document.getElementById("select3").value;
+                var resposta1_3= $('#Respostas4').val();
+                var flagresposta4 = document.getElementById("select4").value;
+                var resposta2_0= $('#Respostas5').val();
+                var flagresposta5 = document.getElementById("select5").value;
+                var resposta2_1= $('#Respostas6').val();
+                var flagresposta6 = document.getElementById("select6").value;
+                var resposta2_2= $('#Respostas7').val();
+                var flagresposta7 = document.getElementById("select7").value;
+                var resposta2_3= $('#Respostas8').val();
+                var flagresposta8 = document.getElementById("select8").value;
+                                      
+
+            var data = {
+                idlesson: lessonId,
+                lessonName: lessonName,
+                idquestion1: idquestion1,
+                questionName1:pergunta1,
+                idalternative1:idalternative1,
+                alternativedesc1: resposta1_0,
+                flagcorrect1: flagresposta1,
+                idalternative2:idalternative2,
+                alternativedesc2: resposta1_1,
+                flagcorrect2: flagresposta2,
+                idalternative3: idalternative3,
+                alternativedesc3: resposta1_2,
+                flagcorrect3: flagresposta3,
+                idalternative4: idalternative4,
+                alternativedesc4: resposta1_3,
+                flagcorrect4: flagresposta4,
+                idquestion2: idquestion2,
+                questionName2: pergunta2,
+                idalternative5:idalternative5,
+                alternativedesc5: resposta2_0,
+                flagcorrect5: flagresposta5,
+                idalternative6: idalternative6,
+                alternativedesc6: resposta2_1,
+                flagcorrect6: flagresposta6,
+                idalternative7: idalternative7,
+                alternativedesc7: resposta2_2,
+                flagcorrect7: flagresposta7,
+                idalternative8: idalternative8,
+                alternativedesc8: resposta2_3,
+                flagcorrect8: flagresposta8,
+                
+               
+            };
+
+            $.ajax({
+                method: "POST",
+                url: "/edicao",
+                data: JSON.stringify(data),
+                contentType: "application/json"
+            })
+            .done((response) => {
+                window.location.href='/edicao';
+            })
+            .fail((jhx, textStatus, msg) => {
+                console.log(jhx);
+            });          
+           }
+
+
+            </script>
