@@ -18,6 +18,8 @@
 	</head>
 
 <body>
+	<input type="text" id="user" value="<%= user.id %>"></input>
+		
 	<!-- Fixed navbar -->
 	<div class="navbar navbar-inverse">
 		<div class="container">
@@ -50,16 +52,18 @@
     <div class="container">
 <br/>
 
-<div class="row thumbnails">
+
+<div class="row thumbnails text-center">
+	<h1><%= curso[0].lessonName %></h1>
 	<div class="item" data-video="teste">
 			<iframe id="videoAula" width="640" height="360" src="<%= curso[0].urlVideo %>" frameborder="0"></iframe>			
 	</div>
 </div>
-
-</div>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn btn-primary" style="margin-left: 40%;" data-toggle="modal" data-target="#exampleModal">
 		Responder perguntas
 	  </button>
+</div>
+
 	  
 	  <!-- Modal -->
 	  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -73,19 +77,19 @@
 			</div>
 			<div class="modal-body">
 			 <h4><%= curso[0].questionName %></h4>
-			 <input type="radio" name="resposta1"><%= curso[0].alternativedesc %></br>
-			 <input type="radio" name="resposta1"><%= curso[1].alternativedesc %></br>
-			 <input type="radio" name="resposta1"><%= curso[2].alternativedesc %></br>
-			 <input type="radio" name="resposta1"><%= curso[3].alternativedesc %></br>
+			 <input type="radio" name="resposta1" value="<%= curso[0].alternativedesc %>" flag="<%= curso[0].flagcorrect %>"><%= curso[0].alternativedesc %></br>
+			 <input type="radio" name="resposta1" value="<%= curso[1].alternativedesc %>"flag="<%= curso[1].flagcorrect %>"><%= curso[1].alternativedesc %></br>
+			 <input type="radio" name="resposta1" value="<%= curso[2].alternativedesc %>" flag="<%= curso[2].flagcorrect %>"><%= curso[2].alternativedesc %></br>
+			 <input type="radio" name="resposta1" value="<%= curso[3].alternativedesc %>" flag="<%= curso[3].flagcorrect %>"><%= curso[3].alternativedesc %></br>
 			 <h4><%= curso[4].questionName %></h4>
-			 <input type="radio" name="resposta2"><%= curso[4].alternativedesc %></br>
-			 <input type="radio" name="resposta2"><%= curso[5].alternativedesc %></br>
-			 <input type="radio" name="resposta2"><%= curso[6].alternativedesc %></br>
-			 <input type="radio" name="resposta2"><%= curso[7].alternativedesc %></br>
+			 <input type="radio" name="resposta2" value="<%= curso[4].alternativedesc %>" flag="<%= curso[4].flagcorrect %>"><%= curso[4].alternativedesc %></br>
+			 <input type="radio" name="resposta2" value="<%= curso[5].alternativedesc %>" flag="<%= curso[5].flagcorrect %>"><%= curso[5].alternativedesc %></br>
+			 <input type="radio" name="resposta2" value="<%= curso[6].alternativedesc %>" flag="<%= curso[6].flagcorrect %>"><%= curso[6].alternativedesc %></br>
+			 <input type="radio" name="resposta2" value="<%= curso[7].alternativedesc %>"flag="<%= curso[7].flagcorrect %>"><%= curso[7].alternativedesc %></br>
 			</div>
 			<div class="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			  <button type="button" class="btn btn-primary">Salvar Respostas</button>
+			  <button type="button" class="btn btn-primary" onclick="doAddAnswer();">Salvar Respostas</button>
 			</div>
 		  </div>
 		</div>
@@ -205,6 +209,49 @@
 		</div>
 	</div>
 </footer>
+<script>
+		function doPermission(){
+			if(localStorage.getItem('permission') != 1 ){
+				$('#admin').remove();
+				$('#edicao').remove();
+			}
+		}
+
+		function doAddAnswer() {
+				if($("input:radio[name='resposta1']:checked").attr('flag') == 's' && $("input:radio[name='resposta2']:checked").attr('flag') == 's' ){
+				//getAnswer
+				var firstQuestionAnswer =  $("input:radio[name='resposta1']:checked").val();
+				var secondQuestionAnswer =  $("input:radio[name='resposta2']:checked").val();
+				var idUser =  $('#user').val();
+
+				var data = {
+				firstQuestionAnswer: firstQuestionAnswer,
+				secondQuestionAnswer: secondQuestionAnswer,
+				idUser: idUser
+				};
+
+				$.ajax({
+				method: "POST",
+				url: "/answer",
+				data: JSON.stringify(data),
+				contentType: "application/json"
+				})
+				.done((response) => {
+				window.location.href='/courses';
+				})
+				.fail((jhx, textStatus, msg) => {
+				console.log(jhx);
+				});      
+				}else{
+					alert('Resposta errada, por favor tente novamente :(');
+					return false;
+
+				}
+			}
+
+
+
+	</script>
 
 
 

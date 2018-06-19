@@ -51,18 +51,19 @@
 <br/>
 
 <div class="row thumbnails">
-		<% for(var chave in curso){  %>
-		<div class="item" data-video="teste">
-			<div class="item-inner">
-				<form onsubmit="return false">
-				<h4 id="lessonName"><%= curso[chave].lessonName %></h4>
-				<input type="submit" name="video" class="aula" >
-				</form>
-			</div>
-		</div>
-		<% } %>
-	</div>
-
+	<h1>Aulas</h1>
+	<table class="table">
+			<tbody>
+				<% for(var chave in curso){  %>
+				<tr>
+				<th colspan="3" scope="row" id="lessonName"><%= curso[chave].lessonName %> </th>
+				<td colspan="3"><button type="submit" class="btn btn-primary aula">Entrar</button>
+				</tr>
+				<% } %>
+				
+			</tbody>
+		</table>
+		
 <footer id="footer">
  
 	<div class="container">
@@ -187,10 +188,9 @@
 	
 				
 	$(".aula").on("click", function(){
-		var lessonName = $("h4").parents('#lessonName').css("background-color", "red" );
-		alert(lessonName);
-		// localStorage.setItem("aulas", lessonName);
-		// window.location.href = "/aulas/" + lessonName;
+		var lessonName = ($( this ).parents('td').siblings('th')[0].innerHTML)
+		localStorage.setItem("aulas", lessonName);
+		window.location.href = "/aulas/" + lessonName;
 	});
 
 

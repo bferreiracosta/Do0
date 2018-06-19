@@ -52,6 +52,14 @@ module.exports = function(){
     
     };
 
+    this.answer = function(dados,retorno){
+
+        var con = db();
+        console.log(dados);
+        return con.query('insert into userAnswer (firstQuestionAnswer, secondQuestionAnswer, idUser) values("'+dados.firstQuestionAnswer+'","'+dados.secondQuestionAnswer+'","'+dados.idUser+'")',retorno);
+        
+        };
+
     this.getbyurl = function(lessonName, retorno){
         var con = db();
         console.log(lessonName)
